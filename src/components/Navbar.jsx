@@ -20,7 +20,7 @@ const Navbar = () => {
 
                 <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
                     <button type="button"
-                            className="h-[50px] w-[162px] text-[#C09600] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid border-[#C09600] flex items-center justify-center lg:block hidden">
+                            className="h-[50px] w-[162px] text-[#C09600] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid border-[#C09600]  items-center justify-center lg:block hidden">
                         <Link to="/contact">Contact Us</Link>
                     </button>
 
