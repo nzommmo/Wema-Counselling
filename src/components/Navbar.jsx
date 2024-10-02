@@ -19,11 +19,20 @@ const Navbar = () => {
                 </Link>
 
                 <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-                    <button type="button"
-                            className="h-[50px] w-[162px] text-[#C09600] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid border-[#C09600]  items-center justify-center lg:block hidden">
-                        <Link to="/contact">Contact Us</Link>
-                    </button>
-
+                    <NavLink to="/contact">
+                        {({isActive}) => (
+                            <button
+                                type="button"
+                                className={`h-[50px] w-[162px] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid items-center justify-center lg:block hidden ${
+                                    isActive
+                                        ? 'bg-[#C09600] text-white border-none'  // Active styles
+                                        : 'text-[#C09600] border-[#C09600]'  // Default styles
+                                }`}
+                            >
+                                Contact Us
+                            </button>
+                        )}
+                    </NavLink>
                 </div>
 
                 <div className="flex gap-2 lg:hidden">
@@ -96,7 +105,7 @@ const Navbar = () => {
                     isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >
-            <button className="absolute right-7 top-4 p-3" onClick={toggleMobileMenu}>
+                <button className="absolute right-7 top-4 p-3" onClick={toggleMobileMenu}>
                     <FontAwesomeIcon className="text-5xl" icon={faXmark}/>
                 </button>
                 <ul className="flex flex-col items-start space-y-4 md:space-y-8 font-baloo font-normal">

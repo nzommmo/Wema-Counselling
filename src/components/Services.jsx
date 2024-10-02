@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import ServicesImg from "../assets/ServicesImg.png";
 import {Link} from "react-router-dom";
