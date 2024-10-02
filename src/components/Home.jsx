@@ -5,6 +5,7 @@ import HomeBanner from "./HomeBanner.jsx";
 import Services from "./Services.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Contact from "./Contact.jsx";
+import Footer from "./Footer.jsx";
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <Services/>
             <Testimonials/>
             <Contact/>
+            <Footer/>
         </>
     )
 }
