@@ -17,7 +17,9 @@ export default withMT({
         'bruno': ['"Bruno Ace"', 'sans-serif']
         // Add other font families as needed
       },
-      backgroundImage: {}
+      backgroundImage: {
+        'testimonialsRectangle': "url('/TestimonialsBg.png')",
+      }
     },
   },
   plugins: [
