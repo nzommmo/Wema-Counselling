@@ -75,7 +75,7 @@ const Navbar = () => {
                         </li>
                         <li className="block py-2 px-3 md:p-0 font-baloo font-normal text-[18px]">
                             <NavLink
-                                to="/about-us"
+                                to="/about"
                                 className={({isActive}) => isActive ? "text-[#C09600]" : ""}>
                                 About
                             </NavLink>
@@ -113,7 +113,7 @@ const Navbar = () => {
                         <NavLink to="/" className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>Home</NavLink>
                     </li>
                     <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
-                        <NavLink to="/about-us"
+                        <NavLink to="/about"
                                  className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>About</NavLink>
                     </li>
                     <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
