@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Line1 from "../assets/Line.png"
+import Person1 from "../assets/TestimonialsImg.png"
 
 const Testimonials = () => {
     return (
@@ -13,8 +14,100 @@ const Testimonials = () => {
                     </h2>
                     <img className="mx-auto mt-3 lg:mt-0" alt="Line1" src={Line1}/>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div
+                        className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 container mx-auto mt-[3rem] mb-[1rem] cursor-pointer">
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                            <div className="p-3">
+                                <div className="flex flex-row mt-4">
+                                    <div className="flex">
+                                        <img
+                                            className="rounded-[10px] px-2 py-1"
+                                            alt="Person1"
+                                            src={Person1}
+                                        />
+                                        <div className="flex flex-col mt-2">
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Mimi</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                        </div>
+                                    </div>
 
+                                    <div className="ml-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 20 20">
+                                            <path fill="#C09600"
+                                                  d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="px-6 mb-[2rem] text-[#000033] text-[15px] tracking-[0.30px] leading-[21.8px]  font-baloo font-normal">
+                                Having interacted with the service providers, I received timely consultancy and
+                                professionalism from Mindful Wema
+                                Solutions Limited.
+                            </p>
+                        </div>
+
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                            <div className="p-3">
+                                <div className="flex flex-row mt-4">
+                                    <div className="flex">
+                                        <img
+                                            className="rounded-[10px] px-2 py-1"
+                                            alt="Person1"
+                                            src={Person1}
+                                        />
+                                        <div className="flex flex-col mt-2">
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Pendo</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="ml-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 20 20">
+                                            <path fill="#C09600"
+                                                  d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="px-6 mb-[2rem] text-[#000033] text-[15px] tracking-[0.30px] leading-[21.8px]  font-baloo font-normal">
+                                Having interacted with the service providers, I received timely consultancy and
+                                professionalism from Mindful Wema
+                                Solutions Limited.
+                            </p>
+                        </div>
+
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                            <div className="p-3">
+                                <div className="flex flex-row mt-4">
+                                    <div className="flex">
+                                        <img
+                                            className="rounded-[10px] px-2 py-1"
+                                            alt="Person1"
+                                            src={Person1}
+                                        />
+                                        <div className="flex flex-col mt-2">
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Sana</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="ml-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 20 20">
+                                            <path fill="#C09600"
+                                                  d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="px-6 mb-[2rem] text-[#000033] text-[15px] tracking-[0.30px] leading-[21.8px]  font-baloo font-normal">
+                                Having interacted with the service providers, I received timely consultancy and
+                                professionalism from Mindful Wema
+                                Solutions Limited.
+                            </p>
+                        </div>
                     </div>
                 </section>
             </div>
