@@ -1,9 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 
 const Contact = () => {
     return (
         <>
-            <div className="bg-[#C096001A] h-auto">
+            <div className="bg-[#C096001A] h-[610px] lg:h-[400px]">
                 <div className="container mx-auto px-6 md:p-0">
                     <div className="text-center mt-[2rem] lg:mt-10">
                         <h4 className="font-baloo font-normal text-[#8a898e] text-xs text-center tracking-[6.30px] mt-[2rem] lg:mt-0 py-[3rem]">

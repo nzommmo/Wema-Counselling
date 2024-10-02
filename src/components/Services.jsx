@@ -65,10 +65,9 @@ const Services = () => {
                                 </div>
 
                                 <button type="button"
-                                        className="mt-[3rem] mb-[2rem] h-[53px] w-full lg:w-[157px] text-[#C09600] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid border-[#C09600] flex justify-center items-center ">
+                                        className="mt-[3rem] mb-[3rem] h-[53px] w-full lg:w-[157px] text-[#C09600] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid border-[#C09600] flex justify-center items-center ">
                                     <Link to="/booking">Book Now</Link>
                                 </button>
-
                             </div>
                         </div>
                     </div>
