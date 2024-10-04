@@ -15,7 +15,7 @@ const Navbar = () => {
         <nav className="container mx-auto bg-white border-gray-200 relative">
             <div className="flex flex-wrap items-center justify-between py-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer">
-                    <img className="h-16 px-5 md:p-0" alt="Logo" src={Logo}/>
+                    <img className="h-16 md:h-24 px-5 md:p-0" alt="Logo" src={Logo}/>
                 </Link>
 
                 <div className="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
