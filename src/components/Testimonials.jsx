@@ -16,7 +16,7 @@ const Testimonials = () => {
 
                     <div
                         className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 container mx-auto mt-[3rem] mb-[1rem] cursor-pointer">
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -34,7 +34,7 @@ const Testimonials = () => {
                                     <div className="ml-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 20 20">
-                                            <path fill="#C09600"
+                                            <path fill="#DF1C67"
                                                   d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
                                         </svg>
                                     </div>
@@ -47,7 +47,7 @@ const Testimonials = () => {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -65,7 +65,7 @@ const Testimonials = () => {
                                     <div className="ml-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 20 20">
-                                            <path fill="#C09600"
+                                            <path fill="#DF1C67"
                                                   d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
                                         </svg>
                                     </div>
@@ -78,7 +78,7 @@ const Testimonials = () => {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#C096001A] hover:shadow-[0px_0px_9px_2px_#C096004D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -96,7 +96,7 @@ const Testimonials = () => {
                                     <div className="ml-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 20 20">
-                                            <path fill="#C09600"
+                                            <path fill="#DF1C67"
                                                   d="M11 9v7h7V9c0-2.2-1.8-5-4-5h-2l1 2s2 0 2 3zM2 9v7h7V9c0-2.2-1.8-5-4-5H3l1 2s2 0 2 3z"/>
                                         </svg>
                                     </div>

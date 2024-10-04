@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/Logo.jpeg";
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,8 +25,8 @@ const Navbar = () => {
                                 type="button"
                                 className={`h-[50px] w-[162px] text-[19px] font-medium font-baloo rounded-2xl border-2 border-solid items-center justify-center lg:block hidden ${
                                     isActive
-                                        ? 'bg-[#C09600] text-white border-none'  // Active styles
-                                        : 'text-[#C09600] border-[#C09600]'  // Default styles
+                                        ? 'bg-[#df1c67] text-white border-none'  // Active styles
+                                        : 'text-[#df1c67] border-[#df1c67]'  // Default styles
                                 }`}
                             >
                                 Contact Us
@@ -69,21 +69,21 @@ const Navbar = () => {
                         <li className="block py-2 px-3 lg:p-0 font-baloo font-normal text-[18px]">
                             <NavLink
                                 to="/"
-                                className={({isActive}) => isActive ? "text-[#C09600]" : ""}>
+                                className={({isActive}) => isActive ? "text-[#df1c67]" : ""}>
                                 Home
                             </NavLink>
                         </li>
                         <li className="block py-2 px-3 md:p-0 font-baloo font-normal text-[18px]">
                             <NavLink
                                 to="/about"
-                                className={({isActive}) => isActive ? "text-[#C09600]" : ""}>
+                                className={({isActive}) => isActive ? "text-[#df1c67]" : ""}>
                                 About
                             </NavLink>
                         </li>
                         <li className="block py-2 px-3 md:p-0 font-baloo font-normal text-[18px]">
                             <NavLink
                                 to="/services"
-                                className={({isActive}) => isActive ? "text-[#C09600]" : ""}>
+                                className={({isActive}) => isActive ? "text-[#df1c67]" : ""}>
                                 Services
                             </NavLink>
                         </li>
@@ -109,20 +109,20 @@ const Navbar = () => {
                     <FontAwesomeIcon className="text-5xl" icon={faXmark}/>
                 </button>
                 <ul className="flex flex-col items-start space-y-4 md:space-y-8 font-baloo font-normal">
-                    <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
-                        <NavLink to="/" className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>Home</NavLink>
+                    <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
+                        <NavLink to="/" className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>Home</NavLink>
                     </li>
-                    <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
+                    <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
                         <NavLink to="/about"
-                                 className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>About</NavLink>
+                                 className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>About</NavLink>
                     </li>
-                    <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
+                    <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
                         <NavLink to="/services"
-                                 className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>Services</NavLink>
+                                 className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>Services</NavLink>
                     </li>
-                    <li className="text-[20px] md:text-3xl hover:text-[#C09600]">
+                    <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
                         <NavLink to="/contact"
-                                 className={({isActive}) => (isActive ? "text-[#C09600]" : "")}>Contact</NavLink>
+                                 className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>Contact</NavLink>
                     </li>
                     {/*<img className="md:hidden" alt="Line" src={Line}/>*/}
                 </ul>

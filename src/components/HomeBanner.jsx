@@ -18,7 +18,7 @@ const HomeBanner = () => {
                         <div className="flex">
                             <Link
                                 to="/booking"
-                                className="mr-7 mt-[30px] text-white bg-[#C09600] py-3 px-7 rounded-3xl font-baloo font-normal text-[18px]"
+                                className="mr-7 mt-[30px] text-white bg-[#df1c67] py-3 px-7 rounded-3xl font-baloo font-normal text-[18px]"
                             >
                                 Book Now
                             </Link>

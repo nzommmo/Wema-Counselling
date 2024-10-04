@@ -67,7 +67,7 @@ const MainContact = () => {
 
                             <div>
                                 <button type="button"
-                                        className="mt-[3rem] h-[53px] w-full text-white text-[19px] font-medium font-baloo rounded-2xl bg-[#C09600] border-2 border-solid border-[#C09600] flex justify-center items-center ">
+                                        className="mt-[3rem] h-[53px] w-full text-white text-[19px] font-medium font-baloo rounded-2xl bg-[#DF1C67] border-2 border-solid border-[#DF1C67] flex justify-center items-center ">
                                     Send Message
                                 </button>
                             </div>
