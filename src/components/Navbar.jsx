@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <nav className="container mx-auto bg-white border-gray-200 relative">
-            <div className="flex flex-wrap items-center justify-between py-4">
+            <div className="flex flex-wrap items-center justify-between">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer">
                     <img className="h-24 px-5 md:p-0" alt="Logo" src={Logo}/>
                 </Link>
