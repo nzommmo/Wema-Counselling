@@ -51,6 +51,21 @@ const MainContact = () => {
                             </div>
 
                             <div className="mb-5">
+                                <label htmlFor="subject"
+                                       className="block mb-2 text-[18px] font-baloo font-medium text-[#718096]">
+                                   Subject
+                                </label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    className="bg-[#F2F1F1] border border-[#F2F1F1] font-baloo font-normal text-[#4A5568] text-[16px] rounded-[12px] w-full p-3"
+                                    placeholder="eg Inquiry"
+                                    required
+                                />
+                            </div>
+
+                            <div className="mb-5">
                                 <label htmlFor="email"
                                        className="block mb-2 text-[18px] font-baloo font-medium text-[#718096]">
                                     Your Message
@@ -69,6 +84,9 @@ const MainContact = () => {
                                 <button type="button"
                                         className="mt-[3rem] h-[53px] w-full text-white text-[19px] font-medium font-baloo rounded-2xl bg-[#DF1C67] border-2 border-solid border-[#DF1C67] flex justify-center items-center ">
                                     Send Message
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="ml-2">
+                                        <path fill="#ffffff" d="m2 21l21-9L2 3v7l15 2l-15 2z"/>
+                                    </svg>
                                 </button>
                             </div>
                         </form>

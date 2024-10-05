@@ -87,6 +87,13 @@ const Navbar = () => {
                                 Services
                             </NavLink>
                         </li>
+                        <li className="block py-2 px-3 md:p-0 font-baloo font-normal text-[18px]">
+                            <NavLink
+                                to="/booking"
+                                className={({isActive}) => isActive ? "text-[#df1c67]" : ""}>
+                                Book Appointment
+                            </NavLink>
+                        </li>
                         <li className="md:hidden block">
                             <div
                                 className="font-baloo font-normal text-black text-[18px] text-center px-4 py-2 cursor-pointer md:block hidden">
@@ -105,7 +112,7 @@ const Navbar = () => {
                     isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >
-                <button className="absolute right-7 top-4 p-3" onClick={toggleMobileMenu}>
+            <button className="absolute right-7 top-4 p-3" onClick={toggleMobileMenu}>
                     <FontAwesomeIcon className="text-5xl" icon={faXmark}/>
                 </button>
                 <ul className="flex flex-col items-start space-y-4 md:space-y-8 font-baloo font-normal">
@@ -123,6 +130,10 @@ const Navbar = () => {
                     <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
                         <NavLink to="/contact"
                                  className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>Contact</NavLink>
+                    </li>
+                    <li className="text-[20px] md:text-3xl hover:text-[#df1c67]">
+                        <NavLink to="/booking"
+                                 className={({isActive}) => (isActive ? "text-[#df1c67]" : "")}>Book Appointment</NavLink>
                     </li>
                     {/*<img className="md:hidden" alt="Line" src={Line}/>*/}
                 </ul>
