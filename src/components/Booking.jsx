@@ -66,7 +66,7 @@ const Booking = () => {
                                 </div>
 
                                 <div className="mb-5">
-                                    <label htmlFor="date"
+                                    <label htmlFor="time"
                                            className="block mb-2 text-[18px] font-baloo font-medium text-[#718096]">
                                         Time <span className="text-[#f62d51]">*</span>
                                     </label>
