@@ -16,7 +16,8 @@ const Testimonials = () => {
 
                     <div
                         className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 container mx-auto mt-[3rem] mb-[1rem] cursor-pointer">
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div
+                            className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -26,8 +27,9 @@ const Testimonials = () => {
                                             src={Person1}
                                         />
                                         <div className="flex flex-col mt-2">
-                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Mimi</p>
-                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Jane
+                                                Kirimi</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Meru</p>
                                         </div>
                                     </div>
 
@@ -47,7 +49,8 @@ const Testimonials = () => {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div
+                            className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -57,11 +60,11 @@ const Testimonials = () => {
                                             src={Person1}
                                         />
                                         <div className="flex flex-col mt-2">
-                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Pendo</p>
-                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">John
+                                                Mwangi</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Nakuru</p>
                                         </div>
                                     </div>
-
                                     <div className="ml-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 20 20">
@@ -72,13 +75,14 @@ const Testimonials = () => {
                                 </div>
                             </div>
                             <p className="px-6 mb-[2rem] text-[#000033] text-[15px] tracking-[0.30px] leading-[21.8px]  font-baloo font-normal">
-                                Having interacted with the service providers, I received timely consultancy and
-                                professionalism from Mindful Wema
-                                Solutions Limited.
+                                I found the sessions at Mindful Wema Solutions incredibly insightful. Their tailored
+                                approach helped me overcome
+                                personal challenges with confidence.
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <div
+                            className="bg-white rounded-[10px] shadow-[0px_0px_9px_2px_#DF1C671A] hover:shadow-[0px_0px_9px_2px_#DF1C674D] hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div className="p-3">
                                 <div className="flex flex-row mt-4">
                                     <div className="flex">
@@ -88,11 +92,10 @@ const Testimonials = () => {
                                             src={Person1}
                                         />
                                         <div className="flex flex-col mt-2">
-                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Sana</p>
-                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Kenya</p>
+                                            <p className="font-baloo font-semibold text-[#000033] text-[16px]">Grace Achieng'</p>
+                                            <p className="font-baloo font-normal text-[#00003380] text-[16px]">Nairobi</p>
                                         </div>
                                     </div>
-
                                     <div className="ml-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 20 20">
@@ -103,11 +106,12 @@ const Testimonials = () => {
                                 </div>
                             </div>
                             <p className="px-6 mb-[2rem] text-[#000033] text-[15px] tracking-[0.30px] leading-[21.8px]  font-baloo font-normal">
-                                Having interacted with the service providers, I received timely consultancy and
-                                professionalism from Mindful Wema
-                                Solutions Limited.
+                                The counseling sessions were life-changing for me. The experts at Mindful Wema Solutions
+                                provided practical tools
+                                that helped me navigate through a difficult phase.
                             </p>
                         </div>
+
                     </div>
                 </section>
             </div>

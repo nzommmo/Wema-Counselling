@@ -5,6 +5,7 @@ import Home from "./Home.jsx";
 import About from "./About.jsx";
 import MainContact from "./MainContact.jsx";
 import MainServices from "./MainServices.jsx";
+import Booking from "./Booking.jsx";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
               <Route path="/about" element={<About/>}/>
               <Route path="/contact" element={<MainContact/>}/>
               <Route path="/services" element={<MainServices/>}/>
+              <Route path="/booking" element={<Booking/>}/>
           </Routes>
       </div>
   )
