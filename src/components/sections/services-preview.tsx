@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimatedCard from "@/components/ui/animated-card";
+import SkeletonImage from "@/components/ui/skeleton-image";
 import SectionHeader from "@/components/ui/section-header";
 import Button from "@/components/ui/button";
 import { services } from "@/data/services";
@@ -27,7 +27,7 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
         <div className="absolute inset-0 backface-hidden">
           <div className="bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-surface-700 h-full flex flex-col">
             <div className="relative h-48 overflow-hidden">
-              <Image
+              <SkeletonImage
                 src={service.image}
                 alt={service.title}
                 fill
