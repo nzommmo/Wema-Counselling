@@ -97,6 +97,7 @@ export default function AboutPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   size="lg"
+                  className="w-full sm:w-auto"
                 >
                   Start Therapy Today
                   <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
@@ -227,7 +228,7 @@ export default function AboutPage() {
                   where every individual feels valued, heard, and empowered to
                   make positive changes in their life.
                 </p>
-                <Button href="/services" variant="outline">
+                <Button href="/services" variant="outline" className="w-full sm:w-auto">
                   Explore Our Services
                   <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
                 </Button>
