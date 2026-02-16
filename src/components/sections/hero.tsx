@@ -1,11 +1,54 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+const rotatingPhrases = [
+  "Navigating Life\u2019s Challenges",
+  "Building Stronger Families",
+  "Empowering Your Growth",
+  "Restoring Inner Peace",
+];
+
+function TypewriterHeadline() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % rotatingPhrases.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <motion.h1
+      className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.3 }}
+    >
+      Your Partner in{" "}
+      <span className="inline-block relative">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={currentIndex}
+            className="bg-linear-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            {rotatingPhrases[currentIndex]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    </motion.h1>
+  );
+}
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,18 +111,8 @@ export default function Hero() {
               Welcome to Mindful Wema
             </motion.p>
 
-            <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-            >
-              Your Partner in{" "}
-              <span className="bg-linear-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent">
-                Navigating Life&apos;s
-              </span>{" "}
-              Challenges
-            </motion.h1>
+
+            <TypewriterHeadline />
 
             <motion.p
               className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8 max-w-lg"
