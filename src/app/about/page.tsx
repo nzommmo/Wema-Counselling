@@ -9,6 +9,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "@/components/ui/button";
 import SectionHeader from "@/components/ui/section-header";
 import AnimatedCard from "@/components/ui/animated-card";
+import MeetTheTeam from "@/components/sections/meet-the-team";
 
 const values = [
   {
@@ -186,6 +187,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Meet the Team */}
+      <MeetTheTeam />
 
       {/* Mission Section */}
       <section className="py-20 bg-gray-50 dark:bg-surface-900">
