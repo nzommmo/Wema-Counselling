@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
 import ScrollToTop from "@/components/scroll-to-top";
+import CursorFollower from "@/components/cursor-follower";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "@/lib/fontawesome";
 import "./globals.css";
@@ -91,6 +92,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
           <ScrollToTop />
+          <CursorFollower />
         </ThemeProvider>
       </body>
     </html>
