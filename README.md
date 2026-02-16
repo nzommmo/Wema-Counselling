@@ -40,7 +40,8 @@ Mindful Wema Solutions provides accessible, professional counselling services fo
 ```
 src/
 ├── app/
-│   ├── about/          # About page
+│   ├── about/          # About page with Meet the Team
+│   ├── blog/           # Blog listing & individual post pages
 │   ├── contact/        # Contact page with form & Google Map
 │   ├── services/       # Services listing page
 │   ├── actions.ts      # Server Actions (Resend email integration)
@@ -48,14 +49,19 @@ src/
 │   ├── layout.tsx      # Root layout with Poppins font
 │   └── page.tsx        # Homepage
 ├── components/
-│   ├── sections/       # Hero, Services Preview, Testimonials, CTA
-│   ├── ui/             # Reusable UI components (Button, AnimatedCard, etc.)
+│   ├── sections/       # Hero, Services Preview, How It Works, Testimonials,
+│   │                   # FAQ Accordion, CTA, Meet the Team, Marquee Banner
+│   ├── ui/             # Reusable UI (Button, AnimatedCard, TiltCard,
+│   │                   # SkeletonImage, FloatingParticles, SectionHeader)
 │   ├── providers/      # Theme provider
-│   ├── navbar.tsx      # Navigation bar
+│   ├── navbar.tsx      # Navigation with animated active link underline
 │   ├── footer.tsx      # Site footer
-│   ├── theme-toggle.tsx # Dark/Light mode toggle
-│   └── whatsapp-button.tsx # Floating WhatsApp button
-├── data/               # Static data (services, contacts, testimonials)
+│   ├── cursor-follower.tsx  # Cursor dot + ring (desktop) & tap ripple (mobile)
+│   ├── scroll-to-top.tsx    # Back-to-top button with scroll progress ring
+│   ├── theme-toggle.tsx     # Dark/Light mode toggle
+│   └── whatsapp-button.tsx  # Floating WhatsApp button
+├── data/               # Static data (services, contacts, testimonials,
+│                       # team, FAQs, blog posts)
 ├── hooks/              # Custom React hooks
 └── lib/                # Utilities & Font Awesome config
 ```
@@ -63,12 +69,25 @@ src/
 ## Features
 
 - **Responsive Design** — Mobile-first layout with a left-sliding mobile navigation menu
-- **Dark Mode** — Theme toggle with system preference detection
-- **Scroll Animations** — Fade-in effects powered by Intersection Observer
+- **Dark Mode** — Theme toggle with system preference detection (defaults to light)
+- **Scroll Animations** — Fade-in effects powered by Intersection Observer & Framer Motion
+- **Typewriter Hero Headline** — Rotating animated phrases in the hero section
+- **Floating Particles** — Canvas-based animated particles with connecting lines in the hero background
+- **Cursor Follower** — Pink dot + trailing ring on desktop, tap ripple on mobile/tablet
+- **3D Tilt Cards** — Team cards tilt toward the cursor with spring physics and a light glare
+- **Marquee Banner** — Infinite-scrolling brand values strip between hero and services
+- **Animated Nav Underline** — Smooth sliding underline on active navigation links
+- **FAQ Accordion** — Expandable FAQs with staggered reveal animations
+- **How It Works** — Step-by-step process with animated progress lines
+- **Meet the Team** — Team member cards with hover specialty overlays
+- **Blog / Resources** — Article listing and individual post pages
+- **Skeleton Image Loading** — Shimmer placeholders while images load
+- **Back-to-Top Button** — Circular scroll progress ring with smooth scroll
+- **Flip Service Cards** — Service cards that flip on hover/tap to reveal details
 - **Contact Form** — Server-side email delivery via Resend
 - **Embedded Google Map** — Pinpointing Amani Counselling Centre on Raila Odinga Way
 - **Calendly Integration** — Direct appointment booking via external link
-- **WhatsApp Button** — Floating chat button for quick communication
+- **WhatsApp Button** — Floating chat button with pre-populated message
 - **SEO Optimised** — Proper meta tags, semantic HTML, and structured headings
 
 ## Getting Started
