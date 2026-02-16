@@ -6,6 +6,7 @@ import Image from "next/image";
 import Button from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import FloatingParticles from "@/components/ui/floating-particles";
 
 const rotatingPhrases = [
   "Navigating Life\u2019s Challenges",
@@ -92,6 +93,9 @@ export default function Hero() {
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Floating particles overlay */}
+      <FloatingParticles />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20">
