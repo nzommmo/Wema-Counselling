@@ -6,6 +6,7 @@ const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Our Services" },
+  { href: "/blog", label: "Blog" },
   { href: "https://calendly.com/maureennjihia468/30min", label: "Book Appointment" },
   { href: "/contact", label: "Contact Us" },
 ];
