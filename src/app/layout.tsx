@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
+import ScrollToTop from "@/components/scroll-to-top";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "@/lib/fontawesome";
 import "./globals.css";
@@ -89,6 +90,7 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
