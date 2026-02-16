@@ -47,8 +47,7 @@ function setTheme(next: Theme) {
 // Initialize on client side
 if (typeof window !== "undefined") {
   const saved = localStorage.getItem("theme") as Theme | null;
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  currentTheme = saved || (prefersDark ? "dark" : "light");
+  currentTheme = saved || "light";
   document.documentElement.classList.toggle("dark", currentTheme === "dark");
 }
 

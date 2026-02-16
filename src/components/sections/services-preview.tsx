@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,9 +11,18 @@ import Button from "@/components/ui/button";
 import { services } from "@/data/services";
 
 function FlipCard({ service }: { service: (typeof services)[0] }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
   return (
-    <div className="perspective-1000 h-[340px]">
-      <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
+    <div
+      className="perspective-1000 h-[340px] cursor-pointer"
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div
+        className={`relative w-full h-full transition-transform duration-700 preserve-3d ${
+          isFlipped ? "rotate-y-180" : ""
+        } group-hover:rotate-y-180`}
+      >
         {/* Front */}
         <div className="absolute inset-0 backface-hidden">
           <div className="bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-surface-700 h-full flex flex-col">
@@ -34,7 +44,8 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
                 {service.description}
               </p>
               <p className="text-xs text-pink-500 font-medium mt-3">
-                Hover to see more →
+                <span className="hidden lg:inline">Hover</span>
+                <span className="lg:hidden">Tap</span> to see more →
               </p>
             </div>
           </div>
@@ -57,6 +68,7 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-pink-600 px-6 py-3 rounded-xl font-semibold text-sm hover:bg-pink-50 transition-colors duration-300 self-start mt-4"
+              onClick={(e) => e.stopPropagation()}
             >
               Book Now
               <FontAwesomeIcon icon={faArrowRight} className="w-3.5 h-3.5" />

@@ -36,7 +36,7 @@ export default function WhatsAppButton() {
 
       {/* Button */}
       <Link
-        href="https://wa.me/254728526544"
+        href="https://wa.me/254728526544?text=Hello%20Mindful%20Wema%2C%20I%20would%20like%20to%20inquire%20about%20your%20counselling%20services."
         target="_blank"
         rel="noopener noreferrer"
         onMouseEnter={() => setIsTooltipVisible(true)}

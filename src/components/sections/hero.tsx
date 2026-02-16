@@ -93,7 +93,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
@@ -103,11 +103,12 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
+                className="w-full sm:w-auto"
               >
                 Book Appointment
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
               </Button>
-              <Button href="/about" variant="outline" size="lg">
+              <Button href="/about" variant="outline" size="lg" className="w-full sm:w-auto">
                 Learn More
                 <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
               </Button>
