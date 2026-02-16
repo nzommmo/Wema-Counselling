@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/theme-toggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -69,7 +71,11 @@ export default function Navbar() {
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-linear-to-r from-pink-600 to-rose-400 rounded-full" />
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-linear-to-r from-pink-600 to-rose-400 rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
                     )}
                   </Link>
                 );
