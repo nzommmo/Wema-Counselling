@@ -103,7 +103,7 @@ export default function ServicesPreview() {
         </div>
 
         <div className="text-center mt-12">
-          <Button href="/services" variant="outline">
+          <Button href="/services" variant="outline" className="w-full sm:w-auto">
             View All Services
             <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
           </Button>
