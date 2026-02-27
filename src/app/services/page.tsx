@@ -12,6 +12,17 @@ import api from "../../../axiosinstance";
 
 const FALLBACK_IMAGE = "/images/MainServicesImg.jpg";
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  service_type: string;
+  duration_minutes: number;
+  price: number;
+  display_order: number;
+  is_active: boolean;
+}
+
 // ─── Skeleton ─────────────────────────────────────────────────────────────────
 
 function ServiceCardSkeleton() {
@@ -31,20 +42,20 @@ function ServiceCardSkeleton() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [preselectedService, setPreselectedService] = useState("");
 
   useEffect(() => {
     api
-      .get("counselling/services")
-      .then((res) => setServices(res.data.data.filter((s) => s.is_active)))
-      .catch((err) => console.error("Failed to fetch services:", err))
+      .get<{ data: Service[] }>("counselling/services")
+      .then((res) => setServices(res.data.data.filter((s: Service) => s.is_active)))
+      .catch((err: unknown) => console.error("Failed to fetch services:", err))
       .finally(() => setLoading(false));
   }, []);
 
-  const handleBook = (serviceTitle) => {
+  const handleBook = (serviceTitle: string) => {
     setPreselectedService(serviceTitle);
     setBookingOpen(true);
   };
