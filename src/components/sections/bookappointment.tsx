@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faArrowRight,
   faArrowLeft,
@@ -20,6 +21,33 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import api from "../../../axiosinstance";
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  duration_minutes: number;
+  price: number;
+  is_active: boolean;
+}
+
+interface FormState {
+  service: string;
+  name: string;
+  email: string;
+  phone: string;
+  session_format: string;
+  preferred_date: string;
+  preferred_time: string;
+  concerns: string;
+  is_anonymous: boolean;
+}
+
+interface FormErrors extends Partial<Record<keyof FormState, string>> {
+  general?: string;
+}
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const TIME_SLOTS = [
@@ -29,12 +57,12 @@ const TIME_SLOTS = [
 
 const STEPS = ["Service", "Details", "Schedule", "Confirm"];
 
-const INITIAL_FORM = {
-  service: "",          // service title string
+const INITIAL_FORM: FormState = {
+  service: "",
   name: "",
   email: "",
   phone: "",
-  session_format: "",   // "online" | "in-person"
+  session_format: "",
   preferred_date: "",
   preferred_time: "",
   concerns: "",
@@ -43,7 +71,7 @@ const INITIAL_FORM = {
 
 // ─── Step Indicator ───────────────────────────────────────────────────────────
 
-function StepIndicator({ current }) {
+function StepIndicator({ current }: { current: number }) {
   return (
     <div className="flex items-center justify-center gap-2 mb-8">
       {STEPS.map((label, i) => {
@@ -91,7 +119,17 @@ function StepIndicator({ current }) {
 
 // ─── Step 1: Service Selection ────────────────────────────────────────────────
 
-function ServiceStep({ services, loading, selected, onSelect }) {
+function ServiceStep({
+  services,
+  loading,
+  selected,
+  onSelect,
+}: {
+  services: Service[];
+  loading: boolean;
+  selected: string;
+  onSelect: (title: string) => void;
+}) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -143,7 +181,17 @@ function ServiceStep({ services, loading, selected, onSelect }) {
 
 // ─── Field ────────────────────────────────────────────────────────────────────
 
-function Field({ icon, label, error, children }) {
+function Field({
+  icon,
+  label,
+  error,
+  children,
+}: {
+  icon: IconDefinition;
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="flex items-center gap-2 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
@@ -161,10 +209,17 @@ const inputClass =
 
 // ─── Step 2: Personal Details ─────────────────────────────────────────────────
 
-function DetailsStep({ form, errors, onChange }) {
+function DetailsStep({
+  form,
+  errors,
+  onChange,
+}: {
+  form: FormState;
+  errors: FormErrors;
+  onChange: (field: keyof FormState, value: string | boolean) => void;
+}) {
   return (
     <div className="flex flex-col gap-5">
-      {/* Anonymous toggle */}
       <div className="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-surface-700 bg-gray-50 dark:bg-surface-900">
         <div>
           <p className="text-sm font-semibold text-gray-900 dark:text-white">Book anonymously</p>
@@ -186,7 +241,7 @@ function DetailsStep({ form, errors, onChange }) {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <Field icon={faUser} label="Full Name" error={errors.name} >
+        <Field icon={faUser} label="Full Name" error={errors.name}>
           <input
             type="text"
             placeholder="Jane Doe"
@@ -222,21 +277,30 @@ function DetailsStep({ form, errors, onChange }) {
 
 // ─── Step 3: Schedule ─────────────────────────────────────────────────────────
 
-function ScheduleStep({ form, errors, onChange }) {
+function ScheduleStep({
+  form,
+  errors,
+  onChange,
+}: {
+  form: FormState;
+  errors: FormErrors;
+  onChange: (field: keyof FormState, value: string) => void;
+}) {
   const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="flex flex-col gap-5">
-      {/* Session format */}
       <div className="flex flex-col gap-1.5">
         <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
           Session Format
         </label>
         <div className="grid grid-cols-2 gap-3">
-          {[
-            { value: "online", label: "Online", icon: faVideo },
-            { value: "in-person", label: "In-Person", icon: faLocationDot },
-          ].map(({ value, label, icon }) => (
+          {(
+            [
+              { value: "online", label: "Online", icon: faVideo },
+              { value: "in-person", label: "In-Person", icon: faLocationDot },
+            ] as { value: string; label: string; icon: IconDefinition }[]
+          ).map(({ value, label, icon }) => (
             <button
               key={value}
               type="button"
@@ -301,8 +365,8 @@ function ScheduleStep({ form, errors, onChange }) {
 
 // ─── Step 4: Confirm ──────────────────────────────────────────────────────────
 
-function ConfirmStep({ form }) {
-  const rows = [
+function ConfirmStep({ form }: { form: FormState }) {
+  const rows: { label: string; value: string }[] = [
     { label: "Service", value: form.service },
     { label: "Name", value: form.is_anonymous ? "Anonymous" : form.name },
     { label: "Email", value: form.email },
@@ -335,7 +399,7 @@ function ConfirmStep({ form }) {
 
 // ─── Success Screen ───────────────────────────────────────────────────────────
 
-function SuccessScreen({ onReset, onClose }) {
+function SuccessScreen({ onReset, onClose }: { onReset: () => void; onClose: () => void }) {
   return (
     <div className="flex flex-col items-center text-center py-8 gap-5">
       <div className="w-20 h-20 rounded-full bg-pink-100 dark:bg-pink-950/40 flex items-center justify-center">
@@ -372,19 +436,25 @@ function SuccessScreen({ onReset, onClose }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function BookAppointment({ isOpen, onClose, preselectedService = "" }) {
-  const [step, setStep] = useState(0);
-  const [form, setForm] = useState({ ...INITIAL_FORM, service: preselectedService });
+interface BookAppointmentProps {
+  isOpen: boolean;
+  onClose: () => void;
+  preselectedService?: string;
+}
 
-  // Sync preselectedService when it changes (e.g. different card clicked)
-  useEffect(() => {
-    setForm((prev) => ({ ...prev, service: preselectedService }));
-  }, [preselectedService]);
-  const [errors, setErrors] = useState({});
-  const [services, setServices] = useState([]);
+export default function BookAppointment({ isOpen, onClose, preselectedService = "" }: BookAppointmentProps) {
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState<FormState>({ ...INITIAL_FORM, service: preselectedService });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [services, setServices] = useState<Service[]>([]);
   const [loadingServices, setLoadingServices] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  // Sync preselectedService when it changes
+  useEffect(() => {
+    setForm((prev) => ({ ...prev, service: preselectedService }));
+  }, [preselectedService]);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -394,16 +464,17 @@ export default function BookAppointment({ isOpen, onClose, preselectedService = 
 
   // Close on Escape
   useEffect(() => {
-    const handler = (e) => { if (e.key === "Escape") handleClose(); };
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Fetch services once
   useEffect(() => {
     api
-      .get("counselling/services")
-      .then((res) => setServices(res.data.data.filter((s) => s.is_active)))
+      .get<{ data: Service[] }>("counselling/services")
+      .then((res) => setServices(res.data.data.filter((s: Service) => s.is_active)))
       .catch(console.error)
       .finally(() => setLoadingServices(false));
   }, []);
@@ -413,13 +484,13 @@ export default function BookAppointment({ isOpen, onClose, preselectedService = 
     setTimeout(reset, 300);
   };
 
-  const update = (field, value) => {
+  const update = (field: keyof FormState, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const validate = () => {
-    const e = {};
+  const validate = (): boolean => {
+    const e: FormErrors = {};
     if (step === 0 && !form.service) e.service = "Please select a service";
     if (step === 1) {
       if (!form.is_anonymous && !form.name.trim()) e.name = "Required";
@@ -454,8 +525,9 @@ export default function BookAppointment({ isOpen, onClose, preselectedService = 
         is_anonymous: form.is_anonymous,
       });
       setSuccess(true);
-    } catch (err) {
-      const msg = err?.response?.data?.message ?? "Something went wrong. Please try again.";
+    } catch (err: unknown) {
+      const error = err as { response?: { data?: { message?: string } } };
+      const msg = error?.response?.data?.message ?? "Something went wrong. Please try again.";
       setErrors({ general: msg });
     } finally {
       setSubmitting(false);
@@ -463,7 +535,7 @@ export default function BookAppointment({ isOpen, onClose, preselectedService = 
   };
 
   const reset = () => {
-    setForm(INITIAL_FORM);
+    setForm({ ...INITIAL_FORM, service: preselectedService });
     setErrors({});
     setStep(0);
     setSuccess(false);
@@ -539,7 +611,7 @@ export default function BookAppointment({ isOpen, onClose, preselectedService = 
                         <DetailsStep form={form} errors={errors} onChange={update} />
                       )}
                       {step === 2 && (
-                        <ScheduleStep form={form} errors={errors} onChange={update} />
+                        <ScheduleStep form={form} errors={errors} onChange={(f, v) => update(f, v)} />
                       )}
                       {step === 3 && <ConfirmStep form={form} />}
                     </div>
