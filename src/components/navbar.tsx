@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/theme-toggle";
+import BookAppointment from "@/components/sections/bookappointment";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,6 +31,11 @@ export default function Navbar() {
   }, []);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
+
+  const openBooking = () => {
+    closeMenu();
+    setBookingOpen(true);
+  };
 
   return (
     <>
@@ -85,14 +92,13 @@ export default function Navbar() {
             {/* Desktop CTA + Mobile Hamburger */}
             <div className="flex items-center gap-4">
               <ThemeToggle />
-              <Link
-                href="https://calendly.com/maureennjihia468/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openBooking}
                 className="hidden lg:inline-flex items-center px-6 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 border-2 border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white hover:-translate-y-0.5"
               >
                 Book Appointment
-              </Link>
+              </button>
 
               {/* Mobile hamburger */}
               <button
@@ -166,19 +172,16 @@ export default function Navbar() {
                   </li>
                 );
               })}
-
             </ul>
 
             <div className="mt-auto pb-8">
-              <Link
-                href="https://calendly.com/maureennjihia468/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
+              <button
+                type="button"
+                onClick={openBooking}
                 className="block w-full text-center px-6 py-3.5 text-base font-semibold text-white bg-linear-to-r from-pink-600 to-rose-500 rounded-xl shadow-lg shadow-pink-500/25 hover:shadow-xl transition-all duration-300"
               >
                 Book Appointment
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -186,6 +189,12 @@ export default function Navbar() {
 
       {/* Spacer for fixed navbar */}
       <div className="h-20" />
+
+      {/* Booking Modal */}
+      <BookAppointment
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
     </>
   );
 }

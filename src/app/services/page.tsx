@@ -1,20 +1,54 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import type { Metadata } from "next";
 import SectionHeader from "@/components/ui/section-header";
 import AnimatedCard from "@/components/ui/animated-card";
-import { services } from "@/data/services";
 import CTASection from "@/components/sections/cta-section";
+import BookAppointment from "@/components/sections/bookappointment";
+import api from "../../../axiosinstance";
 
-export const metadata: Metadata = {
-  title: "Our Services",
-  description:
-    "Explore our range of specialized counselling services including child counselling, marriage therapy, corporate training, and more.",
-};
+const FALLBACK_IMAGE = "/images/MainServicesImg.jpg";
+
+// ─── Skeleton ─────────────────────────────────────────────────────────────────
+
+function ServiceCardSkeleton() {
+  return (
+    <div className="bg-white dark:bg-surface-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-surface-700 animate-pulse h-full flex flex-col">
+      <div className="h-48 bg-gray-200 dark:bg-surface-700" />
+      <div className="p-6 flex flex-col gap-3 flex-1">
+        <div className="h-5 bg-gray-200 dark:bg-surface-700 rounded w-3/4" />
+        <div className="h-4 bg-gray-200 dark:bg-surface-700 rounded w-full" />
+        <div className="h-4 bg-gray-200 dark:bg-surface-700 rounded w-5/6" />
+        <div className="h-4 bg-gray-200 dark:bg-surface-700 rounded w-1/2 mt-auto" />
+      </div>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [preselectedService, setPreselectedService] = useState("");
+
+  useEffect(() => {
+    api
+      .get("counselling/services")
+      .then((res) => setServices(res.data.data.filter((s) => s.is_active)))
+      .catch((err) => console.error("Failed to fetch services:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleBook = (serviceTitle) => {
+    setPreselectedService(serviceTitle);
+    setBookingOpen(true);
+  };
+
   return (
     <>
       {/* Hero */}
@@ -62,45 +96,72 @@ export default function ServicesPage() {
             title="How we can help you"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {services.map((service, i) => (
-              <AnimatedCard key={service.slug} delay={(i % 4) * 100}>
-                <div className="group bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-500/5 transition-all duration-500 border border-gray-100 dark:border-surface-700 hover:border-pink-100 dark:hover:border-pink-900/50 h-full flex flex-col">
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
+          {!loading && services.length === 0 ? (
+            <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
+              Services are currently unavailable. Please check back soon.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <ServiceCardSkeleton key={i} />
+                  ))
+                : services.map((service, i) => (
+                    <AnimatedCard key={service.id} delay={(i % 4) * 100}>
+                      <div className="group bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-500/5 transition-all duration-500 border border-gray-100 dark:border-surface-700 hover:border-pink-100 dark:hover:border-pink-900/50 h-full flex flex-col">
+                        <div className="relative h-48 overflow-hidden">
+                          <Image
+                            src={FALLBACK_IMAGE}
+                            alt={service.title}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
 
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-1">
-                      {service.description}
-                    </p>
-                    <Link
-                      href="https://calendly.com/maureennjihia468/30min"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-pink-600 hover:text-pink-700 transition-all duration-300 group/link"
-                    >
-                      Book Now
-                      <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1" />
-                    </Link>
-                  </div>
-                </div>
-              </AnimatedCard>
-            ))}
-          </div>
+                        <div className="p-6 flex flex-col flex-1">
+                          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 transition-colors duration-300">
+                            {service.title}
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4 flex-1">
+                            {service.description}
+                          </p>
+
+                          <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 mb-4">
+                            <span>{service.duration_minutes} min</span>
+                            <span className="font-medium text-gray-600 dark:text-gray-300">
+                              KES {service.price.toLocaleString()}
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => handleBook(service.title)}
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-pink-600 hover:text-pink-700 transition-all duration-300 group/link"
+                          >
+                            Book Now
+                            <FontAwesomeIcon
+                              icon={faArrowRight}
+                              className="w-3 h-3 transition-transform duration-300 group-hover/link:translate-x-1"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </AnimatedCard>
+                  ))}
+            </div>
+          )}
         </div>
       </section>
 
       <CTASection />
+
+      {/* Single shared modal instance */}
+      <BookAppointment
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        preselectedService={preselectedService}
+      />
     </>
   );
 }

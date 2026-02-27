@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimatedCard from "@/components/ui/animated-card";
 import SkeletonImage from "@/components/ui/skeleton-image";
 import SectionHeader from "@/components/ui/section-header";
 import Button from "@/components/ui/button";
-import { services } from "@/data/services";
+import BookAppointment from "@/components/sections/bookappointment";
+import api from "../../../axiosinstance";
 
-function FlipCard({ service }: { service: (typeof services)[0] }) {
+const FALLBACK_IMAGE = "/images/MainServicesImg.jpg";
+
+function FlipCard({ service, onBook }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
           <div className="bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-surface-700 h-full flex flex-col">
             <div className="relative h-48 overflow-hidden">
               <SkeletonImage
-                src={service.image}
+                src={FALLBACK_IMAGE}
                 alt={service.title}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -61,18 +63,23 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
               <p className="text-pink-100 text-sm leading-relaxed">
                 {service.description}
               </p>
+              <p className="text-pink-200 text-xs mt-3">
+                {service.duration_minutes} min &middot; KES{" "}
+                {service.price.toLocaleString()}
+              </p>
             </div>
 
-            <Link
-              href="https://calendly.com/maureennjihia468/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onBook(service.title);
+              }}
               className="inline-flex items-center gap-2 bg-white text-pink-600 px-6 py-3 rounded-xl font-semibold text-sm hover:bg-pink-50 transition-colors duration-300 self-start mt-4"
-              onClick={(e) => e.stopPropagation()}
             >
               Book Now
               <FontAwesomeIcon icon={faArrowRight} className="w-3.5 h-3.5" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -80,35 +87,78 @@ function FlipCard({ service }: { service: (typeof services)[0] }) {
   );
 }
 
+function FlipCardSkeleton() {
+  return (
+    <div className="h-[340px] bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-surface-700 animate-pulse">
+      <div className="h-48 bg-gray-200 dark:bg-surface-700" />
+      <div className="p-6 space-y-3">
+        <div className="h-5 bg-gray-200 dark:bg-surface-700 rounded w-3/4" />
+        <div className="h-4 bg-gray-200 dark:bg-surface-700 rounded w-full" />
+        <div className="h-4 bg-gray-200 dark:bg-surface-700 rounded w-5/6" />
+      </div>
+    </div>
+  );
+}
+
 export default function ServicesPreview() {
-  const featured = services.slice(0, 6);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [preselectedService, setPreselectedService] = useState("");
+
+  useEffect(() => {
+    api
+      .get("counselling/services")
+      .then((res) =>
+        setServices(res.data.data.filter((s) => s.is_active).slice(0, 6))
+      )
+      .catch((err) => console.error("Failed to fetch services:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleBook = (serviceTitle) => {
+    setPreselectedService(serviceTitle);
+    setBookingOpen(true);
+  };
 
   return (
-    <section className="py-20 lg:py-28 bg-linear-to-b from-white via-pink-50/30 to-white dark:from-surface-950 dark:via-surface-900 dark:to-surface-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          subtitle="OUR SERVICES"
-          title="We offer the best services"
-          description="Specialized counselling for teens, youths, couples, and families. Research services for academic proposals and data analysis."
-        />
+    <>
+      <section className="py-20 lg:py-28 bg-linear-to-b from-white via-pink-50/30 to-white dark:from-surface-950 dark:via-surface-900 dark:to-surface-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            subtitle="OUR SERVICES"
+            title="We offer the best services"
+            description="Specialized counselling for teens, youths, couples, and families. Research services for academic proposals and data analysis."
+          />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {featured.map((service, i) => (
-            <AnimatedCard key={service.slug} delay={i * 100}>
-              <div className="group">
-                <FlipCard service={service} />
-              </div>
-            </AnimatedCard>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {loading
+              ? Array.from({ length: 3 }).map((_, i) => (
+                  <FlipCardSkeleton key={i} />
+                ))
+              : services.map((service, i) => (
+                  <AnimatedCard key={service.id} delay={i * 100}>
+                    <div className="group">
+                      <FlipCard service={service} onBook={handleBook} />
+                    </div>
+                  </AnimatedCard>
+                ))}
+          </div>
 
-        <div className="text-center mt-12">
-          <Button href="/services" variant="outline" className="w-full sm:w-auto">
-            View All Services
-            <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
-          </Button>
+          <div className="text-center mt-12">
+            <Button href="/services" variant="outline" className="w-full sm:w-auto">
+              View All Services
+              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <BookAppointment
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        preselectedService={preselectedService}
+      />
+    </>
   );
 }
