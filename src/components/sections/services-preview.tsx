@@ -12,7 +12,20 @@ import api from "../../../axiosinstance";
 
 const FALLBACK_IMAGE = "/images/MainServicesImg.jpg";
 
-function FlipCard({ service, onBook }) {
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  service_type: string;
+  duration_minutes: number;
+  price: number;
+  display_order: number;
+  is_active: boolean;
+}
+
+// ─── Flip Card ────────────────────────────────────────────────────────────────
+
+function FlipCard({ service, onBook }: { service: Service; onBook: (title: string) => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -87,6 +100,8 @@ function FlipCard({ service, onBook }) {
   );
 }
 
+// ─── Skeleton ─────────────────────────────────────────────────────────────────
+
 function FlipCardSkeleton() {
   return (
     <div className="h-[340px] bg-white dark:bg-surface-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-surface-700 animate-pulse">
@@ -100,23 +115,25 @@ function FlipCardSkeleton() {
   );
 }
 
+// ─── Main Component ───────────────────────────────────────────────────────────
+
 export default function ServicesPreview() {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [preselectedService, setPreselectedService] = useState("");
 
   useEffect(() => {
     api
-      .get("counselling/services")
+      .get<{ data: Service[] }>("counselling/services")
       .then((res) =>
-        setServices(res.data.data.filter((s) => s.is_active).slice(0, 6))
+        setServices(res.data.data.filter((s: Service) => s.is_active).slice(0, 6))
       )
-      .catch((err) => console.error("Failed to fetch services:", err))
+      .catch((err: unknown) => console.error("Failed to fetch services:", err))
       .finally(() => setLoading(false));
   }, []);
 
-  const handleBook = (serviceTitle) => {
+  const handleBook = (serviceTitle: string) => {
     setPreselectedService(serviceTitle);
     setBookingOpen(true);
   };
