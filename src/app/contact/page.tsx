@@ -4,8 +4,7 @@ import { useState, FormEvent } from "react";
 import AnimatedCard from "@/components/ui/animated-card";
 import SectionHeader from "@/components/ui/section-header";
 import { contacts } from "@/data/contacts";
-
-import { sendEmail } from "../actions";
+import api from "../../../axiosinstance";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -40,22 +39,23 @@ export default function ContactPage() {
 
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true);
-      
-      const formData = new FormData();
-      formData.append("name", formState.fullName);
-      formData.append("email", formState.email);
-      formData.append("subject", formState.subject);
-      formData.append("message", formState.message);
-
-      const result = await sendEmail(formData);
-
-      setIsSubmitting(false);
-
-      if (result.error) {
-        setServerError(result.error);
-      } else {
+      try {
+        await api.post("inquiries", {
+          name: formState.fullName,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          site: "counselling",
+        });
         setIsSubmitted(true);
         setFormState({ fullName: "", email: "", subject: "", message: "" });
+      } catch (err: unknown) {
+        const error = err as { response?: { data?: { message?: string } } };
+        setServerError(
+          error?.response?.data?.message ?? "Something went wrong. Please try again."
+        );
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
